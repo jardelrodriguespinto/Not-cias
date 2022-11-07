@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/main.css'%}">
+    </head>
+    <body>
+        <header>
+            <div class="wrapper">
+                <h1>Notícias</h1>
+            </div>        
+        </header>
+        <main>
+            {% for title, author, description, url, image in news %}
+            {% if image != None and author != None %}
+            <div class="container">
+                <h3>{{ title }}</h3>
+                <img src="{{ image}}">
+                <p>{{ description }}</p>
+                <address>{{ author }}</address>
+                <a href="{{ url }}">{{url}}</a>
+            </div>
+            {% elif image == None and author != None %}
+            <div class="container">
+                <h3>{{ title }}</h3>
+                <p>{{ description }}</p>
+                <address>{{ author }}</address>
+                <a href="{{ url }}">{{url}}</a>
+            </div>
+            {% elif image != None and author != None %}
+            <div class="container">
+                <h3>{{ title }}</h3>
+                <img src="{{ image}}">
+                <p>{{ description }}</p>
+                <address>{{ author }}</address>
+                <a href="{{ url }}">{{url}}</a>
+            </div>
+            {% elif image == None and author == None %}
+            <div class="container">
+                <h3>{{ title }}</h3>
+                <p>{{ description }}</p>
+                <a href="{{ url }}">{{url}}</a>
+            </div>
+            {% endif%}
+            {% endfor %}
+        </main>
+        <footer>
+            <div class="footer">
+                <p class="copyright">Jardel Rodrigues © 2022</p>
+            </div>
+        </footer>
+    </body>
+</html>
